@@ -20,4 +20,15 @@ public class UrlShortenerGrain(
     {
         return Task.FromResult(state.State.FullUrl);
     }
+
+    public Task BrokenCode(CustomUrl? customUrl)
+    {
+        if (customUrl is not null)
+        {
+            throw new ArgumentNullException(nameof(customUrl), "CustomUrl should be null");
+        }
+
+        return Task.CompletedTask;
+    }
+
 }

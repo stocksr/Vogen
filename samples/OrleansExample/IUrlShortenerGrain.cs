@@ -4,4 +4,6 @@ public interface IUrlShortenerGrain : IGrainWithStringKey
 {
     Task SetUrl(CustomUrl fullUrl);
     Task<CustomUrl> GetUrl();
+
+    Task BrokenCode(CustomUrl? customUrl);
 }

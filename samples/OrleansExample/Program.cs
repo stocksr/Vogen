@@ -12,6 +12,13 @@ var app = builder.Build();
 
 app.MapGet("/", static () => "Welcome to the URL shortener, powered by Orleans!");
 
+app.MapGet("/break", static async (IGrainFactory grains) =>
+{
+    var shortenerGrain = grains.GetGrain<IUrlShortenerGrain>("TEST");
+    await shortenerGrain.BrokenCode(null);
+    return "IT DID NOT CRASH - THE FIX WORKED";
+});
+
 app.MapGet("/shorten",
     static async (IGrainFactory grains, HttpRequest request, CustomUrl url) =>
     {
